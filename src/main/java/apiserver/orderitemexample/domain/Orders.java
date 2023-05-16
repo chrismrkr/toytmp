@@ -2,6 +2,9 @@ package apiserver.orderitemexample.domain;
 
 import lombok.Getter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
@@ -11,20 +14,19 @@ public class Orders {
     @GeneratedValue
     @Column(name = "order_id")
     private Long id;
-    private int totalPrice;
+
     private String orderDescription;
+
     @ManyToOne
     @JoinColumn(name = "member_id")
     private Member member;
 
+    @OneToMany(mappedBy = "order")
+    private List<OrderItem> orderItemList = new ArrayList<>();
+
     private static class Builder {
-        private int totalPrice;
         private String orderDescription;
         private Member member;
-        public Builder totalPrice(int totalPrice) {
-            this.totalPrice = totalPrice;
-            return this;
-        }
         public Builder orderDescription(String orderDescription) {
             this.orderDescription = orderDescription;
             return this;
@@ -43,6 +45,5 @@ public class Orders {
     private Orders(Builder builder) {
         this.member = builder.member;
         this.orderDescription = builder.orderDescription;
-        this.totalPrice = builder.totalPrice;
     }
 }

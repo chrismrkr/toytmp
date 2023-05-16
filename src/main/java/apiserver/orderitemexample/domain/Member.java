@@ -13,10 +13,14 @@ public class Member {
     @GeneratedValue
     @Column(name = "member_id")
     private Long id;
+
     private String name;
+
     private int age;
+
     @OneToMany(mappedBy = "member")
     private List<Orders> ordersList = new ArrayList<>();
+
     private static class Builder {
         private String name;
         private int age;
@@ -32,6 +36,7 @@ public class Member {
             return new Member(this);
         }
     }
+
     public static Builder builder() {
         return new Builder();
     }
