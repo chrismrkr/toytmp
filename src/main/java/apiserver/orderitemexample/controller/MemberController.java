@@ -17,7 +17,7 @@ public class MemberController {
     private final MemberService memberService;
 
     @PostMapping("/member")
-    CreateResponseDto createMemberRequest(@RequestBody CreateRequestDto dto) {
+    public CreateResponseDto createMemberRequest(@RequestBody CreateRequestDto dto) {
         Member member = Member.builder().name(dto.getName())
                                         .age(dto.getAge())
                                         .build();

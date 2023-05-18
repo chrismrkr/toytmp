@@ -21,7 +21,7 @@ public class Member {
     @OneToMany(mappedBy = "member")
     private List<Orders> ordersList = new ArrayList<>();
 
-    private static class Builder {
+    public static class Builder {
         private String name;
         private int age;
         public Builder name(String name) {
